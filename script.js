@@ -1,23 +1,44 @@
 let playerInitPosition = 4;
+let gameStarted = false;
+const doButton = document.querySelector("#do");
+//querySelector pick 1 element! means inside the ID only got 1 element
+const reButton = document.querySelector("#re");
+const miButton = document.querySelector("#mi");
+const faButton = document.querySelector("#fa");
+const startButton = document.querySelector("#start");
 const resetButton = document.querySelector("#reset");
+
+startButton.addEventListener("click", function () {
+  resetGame(); // clean the board/data inside
+  console.log("Ready ! ! ! ! ! ! ! ! ");
+  setTimeout(function () {
+    console.log("GO!");
+  }, 1000);
+
+  setTimeout(function () {
+    console.log("GOOO!!");
+
+    init();
+    gameStarted = true;
+  }, 2000);
+});
 
 function init() {
   const startCell = document.querySelector("#cell-" + playerInitPosition);
   startCell.textContent = "✈️";
   startCell.classList.add("current");
 }
-init();
-
-const doButton = document.querySelector("#do");
-//querySelector pick 1 element! means inside the ID only got 1 element
+// do button
 doButton.addEventListener("click", function () {
+  if (!gameStarted) {
+    return;
+  }
   if (playerInitPosition % 3 == 2) {
     /*this is checking if it is reaching to the edge of the board*/
     return; /* the return here just mean exit the early) , exit the function early*/
   }
   let playerNewPosition = playerInitPosition + 1;
-
-  /* LINE 8 - if condition not true, doesn't return, move into this line */
+  /* - if condition not true, doesn't return, move into this line */
   console.log(playerInitPosition);
   let previousCell = document.querySelector("#cell-" + playerInitPosition);
   let currentCell = document.querySelector("#cell-" + playerNewPosition);
@@ -30,8 +51,10 @@ doButton.addEventListener("click", function () {
   playerInitPosition = playerNewPosition;
 });
 
-const reButton = document.querySelector("#re");
 reButton.addEventListener("click", function () {
+  if (!gameStarted) {
+    return;
+  }
   if (
     playerInitPosition == 6 ||
     playerInitPosition == 7 ||
@@ -52,8 +75,10 @@ reButton.addEventListener("click", function () {
   playerInitPosition = playerNewPosition;
 });
 
-const miButton = document.querySelector("#mi");
 miButton.addEventListener("click", function () {
+  if (!gameStarted) {
+    return;
+  }
   if (
     playerInitPosition == 0 ||
     playerInitPosition == 3 ||
@@ -74,8 +99,10 @@ miButton.addEventListener("click", function () {
   playerInitPosition = playerNewPosition;
 });
 
-const faButton = document.querySelector("#fa");
 faButton.addEventListener("click", function () {
+  if (!gameStarted) {
+    return;
+  }
   if (
     playerInitPosition == 0 ||
     playerInitPosition == 1 ||
@@ -101,10 +128,15 @@ function resetGame() {
   cells.forEach(function (square) {
     square.classList.remove("current");
     square.classList.remove("visited");
-    square.textContent = "";
+    console.log(square.id, square.textContent);
+    square.textContent = square.id.split("-")[1];
+    console.log(square.id, square.textContent);
   });
-  init();
+  playerInitPosition = 4;
+  console.log(playerInitPosition);
+  gameStarted = false;
 }
 resetButton.addEventListener("click", function () {
+  console.log("RESET GAME RAN");
   resetGame();
 });

@@ -1,4 +1,9 @@
 let playerInitPosition = 4;
+const doButton = document.querySelector("#do");
+//querySelector pick 1 element! means inside the ID only got 1 element
+const reButton = document.querySelector("#re");
+const miButton = document.querySelector("#mi");
+const faButton = document.querySelector("#fa");
 const resetButton = document.querySelector("#reset");
 
 function init() {
@@ -7,17 +12,14 @@ function init() {
   startCell.classList.add("current");
 }
 init();
-
-const doButton = document.querySelector("#do");
-//querySelector pick 1 element! means inside the ID only got 1 element
+// do button
 doButton.addEventListener("click", function () {
   if (playerInitPosition % 3 == 2) {
     /*this is checking if it is reaching to the edge of the board*/
     return; /* the return here just mean exit the early) , exit the function early*/
   }
   let playerNewPosition = playerInitPosition + 1;
-
-  /* LINE 8 - if condition not true, doesn't return, move into this line */
+  /* - if condition not true, doesn't return, move into this line */
   console.log(playerInitPosition);
   let previousCell = document.querySelector("#cell-" + playerInitPosition);
   let currentCell = document.querySelector("#cell-" + playerNewPosition);
@@ -30,7 +32,6 @@ doButton.addEventListener("click", function () {
   playerInitPosition = playerNewPosition;
 });
 
-const reButton = document.querySelector("#re");
 reButton.addEventListener("click", function () {
   if (
     playerInitPosition == 6 ||
@@ -52,7 +53,6 @@ reButton.addEventListener("click", function () {
   playerInitPosition = playerNewPosition;
 });
 
-const miButton = document.querySelector("#mi");
 miButton.addEventListener("click", function () {
   if (
     playerInitPosition == 0 ||
@@ -74,7 +74,6 @@ miButton.addEventListener("click", function () {
   playerInitPosition = playerNewPosition;
 });
 
-const faButton = document.querySelector("#fa");
 faButton.addEventListener("click", function () {
   if (
     playerInitPosition == 0 ||
@@ -101,10 +100,15 @@ function resetGame() {
   cells.forEach(function (square) {
     square.classList.remove("current");
     square.classList.remove("visited");
-    square.textContent = "";
+    console.log(square.id, square.textContent);
+    square.textContent = square.id.split("-")[1];
+    console.log(square.id, square.textContent);
   });
+  playerInitPosition = 4;
+  console.log(playerInitPosition);
   init();
 }
 resetButton.addEventListener("click", function () {
+  console.log("RESET GAME RAN");
   resetGame();
 });
