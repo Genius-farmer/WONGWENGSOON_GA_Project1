@@ -9,5 +9,35 @@ main {
   justify-content: center;
   align-items: center;
   height: 100vh;
+  gap: 50px;
   /* margin: 0; */
+}
+
+#maze {
+  display: grid;
+  grid-template-columns: repeat(3, 250px);
+  gap: 5px;
+  background-color: #003a70;
+  padding: 5px;
+}
+
+.cell {
+  width: 250px;
+  height: 250px;
+  background-color: #ffcb05;
+
+  display: flex;
+  justify-content: center; /*this centers the left right */
+  align-items: center; /*this centers top and bottom*/
+
+  font-size: 120px;
+  color: black;
+}
+
+.visited {
+  background-color: pink;
+}
+
+.current {
+  background-color: powderblue;
 }
