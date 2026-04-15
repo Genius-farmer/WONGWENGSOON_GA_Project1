@@ -2,6 +2,9 @@ let playerInitPosition = 4;
 let gameStarted = false;
 const doButton = document.querySelector("#do");
 //querySelector pick 1 element! means inside the ID only got 1 element
+const maze = document.querySelector("#maze");
+const controls = document.querySelector("#controls");
+const message = document.querySelector("#message");
 const reButton = document.querySelector("#re");
 const miButton = document.querySelector("#mi");
 const faButton = document.querySelector("#fa");
@@ -10,14 +13,30 @@ const resetButton = document.querySelector("#reset");
 
 startButton.addEventListener("click", function () {
   resetGame(); // clean the board/data inside
-  console.log("Ready ! ! ! ! ! ! ! ! ");
+
+  maze.classList.remove("hidden");
+  controls.classList.remove("hidden");
+
+  message.textContent = "Ready ! ! ! ! ! ! ! ! ";
+
   setTimeout(function () {
-    console.log("GO!");
+    message.textContent = "";
   }, 1000);
 
   setTimeout(function () {
-    console.log("GOOO!!");
+    message.textContent = "! ! ! ! ! WHYYY ! ! ! ! ! ! ! !";
+  }, 1000);
 
+  setTimeout(function () {
+    message.textContent = "";
+  }, 1000);
+
+  setTimeout(function () {
+    message.textContent = "GOOOOOOOOOOOO!!";
+  }, 3000);
+
+  setTimeout(function () {
+    message.textContent = "";
     init();
     gameStarted = true;
   }, 2000);
@@ -134,6 +153,8 @@ function resetGame() {
   });
   playerInitPosition = 4;
   console.log(playerInitPosition);
+  maze.classList.add("hidden");
+  controls.classList.add("hidden");
   gameStarted = false;
 }
 resetButton.addEventListener("click", function () {
