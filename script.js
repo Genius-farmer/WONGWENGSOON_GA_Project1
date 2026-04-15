@@ -12,8 +12,9 @@ const startButton = document.querySelector("#start");
 const resetButton = document.querySelector("#reset");
 
 startButton.addEventListener("click", function () {
+  console.log("START CLICKED");
   resetGame(); // clean the board/data inside
-
+  console.log("RESET CLICKED");
   maze.classList.remove("hidden");
   controls.classList.remove("hidden");
 
