@@ -220,7 +220,7 @@ doButton.addEventListener("click", function () {
   playerInitPosition = playerNewPosition;
 });
 
-// mi button!!!!
+// re button!!!!
 reButton.addEventListener("click", function () {
   if (!gameStarted) {
     return;
@@ -232,6 +232,24 @@ reButton.addEventListener("click", function () {
   ) {
     return;
   }
+
+  playerInput.push("re");
+  console.log("playerInput", playerInput);
+  console.log("gameGenNotes", gameGenNotes);
+  console.log(playerInput);
+  let currentIndex = playerInput.length - 1;
+  console.log("index", currentIndex);
+  console.log("compare", playerInput[currentIndex], gameGenNotes[currentIndex]);
+
+  if (playerInput[currentIndex] !== gameGenNotes[currentIndex]) {
+    console.log("WRONG!!");
+    return;
+  }
+
+  if (playerInput.length === gameGenNotes.length) {
+    console.log("correct round!");
+  }
+
   let playerNewPosition = playerInitPosition + 3;
   console.log(playerInitPosition);
   let previousCell = document.querySelector("#cell-" + playerInitPosition);
@@ -245,6 +263,7 @@ reButton.addEventListener("click", function () {
   playerInitPosition = playerNewPosition;
 });
 
+// MI
 miButton.addEventListener("click", function () {
   if (!gameStarted) {
     return;
@@ -256,6 +275,24 @@ miButton.addEventListener("click", function () {
   ) {
     return;
   }
+
+  playerInput.push("mi");
+  console.log("playerInput", playerInput);
+  console.log("gameGenNotes", gameGenNotes);
+  console.log(playerInput);
+  let currentIndex = playerInput.length - 1;
+  console.log("index", currentIndex);
+  console.log("compare", playerInput[currentIndex], gameGenNotes[currentIndex]);
+
+  if (playerInput[currentIndex] !== gameGenNotes[currentIndex]) {
+    console.log("WRONG!!");
+    return;
+  }
+
+  if (playerInput.length === gameGenNotes.length) {
+    console.log("correct round!");
+  }
+
   let playerNewPosition = playerInitPosition - 1;
   console.log(playerInitPosition);
   let previousCell = document.querySelector("#cell-" + playerInitPosition);
@@ -280,6 +317,24 @@ faButton.addEventListener("click", function () {
   ) {
     return;
   }
+
+  playerInput.push("fa");
+  console.log("playerInput", playerInput);
+  console.log("gameGenNotes", gameGenNotes);
+  console.log(playerInput);
+  let currentIndex = playerInput.length - 1;
+  console.log("index", currentIndex);
+  console.log("compare", playerInput[currentIndex], gameGenNotes[currentIndex]);
+
+  if (playerInput[currentIndex] !== gameGenNotes[currentIndex]) {
+    console.log("WRONG!!");
+    return;
+  }
+
+  if (playerInput.length === gameGenNotes.length) {
+    console.log("correct round!");
+  }
+
   let playerNewPosition = playerInitPosition - 3;
   console.log(playerInitPosition);
   let previousCell = document.querySelector("#cell-" + playerInitPosition);
