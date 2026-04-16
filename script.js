@@ -22,6 +22,7 @@ startButton.addEventListener("click", function () {
   console.log("START CLICKED");
   instructionsButton.classList.add("hidden");
   resetGame(); // clean the board/data inside
+  playIntroSound();
   console.log("RESET CLICKED");
 
   message.textContent = "Ready ! ! ! ! ! ! ! !";
@@ -75,25 +76,25 @@ startButton.addEventListener("click", function () {
   timers.push(
     setTimeout(function () {
       message.textContent = "";
-    }, 1000),
+    }, 2200),
   );
 
   timers.push(
     setTimeout(function () {
       message.textContent = "Do";
-    }, 1500),
+    }, 2300),
   );
 
   timers.push(
     setTimeout(function () {
       message.textContent = "Do it";
-    }, 2000),
+    }, 2600),
   );
 
   timers.push(
     setTimeout(function () {
       message.textContent = "Do it with";
-    }, 2500),
+    }, 2800),
   );
 
   timers.push(
@@ -387,6 +388,7 @@ faButton.addEventListener("click", function () {
 });
 
 function resetGame() {
+  stopIntroSound();
   const cells = document.querySelectorAll(".cell");
   cells.forEach(function (square) {
     square.classList.remove("current");

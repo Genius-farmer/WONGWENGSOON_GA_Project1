@@ -1,3 +1,4 @@
+const introSound = new Audio("sounds/intro.mp3");
 const doSound = new Audio("sounds/do.mp3");
 const reSound = new Audio("sounds/re.mp3");
 const miSound = new Audio("sounds/mi.mp3");
@@ -7,6 +8,16 @@ doSound.preload = "auto";
 reSound.preload = "auto";
 miSound.preload = "auto";
 faSound.preload = "auto";
+
+function playIntroSound() {
+  introSound.currentTime = 0;
+  introSound.play();
+}
+
+function stopIntroSound() {
+  introSound.pause();
+  introSound.currentTime = 0;
+}
 
 function playNoteSound(note) {
   if (note === "do") {
