@@ -17,7 +17,7 @@ startButton.addEventListener("click", function () {
   resetGame(); // clean the board/data inside
   console.log("RESET CLICKED");
 
-  message.textContent = "Ready ! ! ! ! ! ! ! ! ";
+  message.textContent = "Ready ! ! ! ! ! ! ! !";
 
   timers.push(
     setTimeout(function () {
@@ -27,30 +27,60 @@ startButton.addEventListener("click", function () {
 
   timers.push(
     setTimeout(function () {
-      message.textContent = "ONE TWO THREE";
+      message.textContent = "Do";
+    }, 1500),
+  );
+
+  timers.push(
+    setTimeout(function () {
+      message.textContent = "Do it";
     }, 2000),
   );
 
   timers.push(
     setTimeout(function () {
-      message.textContent = "";
-    }, 1000),
+      message.textContent = "Do it with";
+    }, 2500),
   );
 
   timers.push(
     setTimeout(function () {
-      message.textContent = "GOOOOOOOOOOOO!!";
-    }, 5000),
+      message.textContent = "Do it with me";
+    }, 3000),
+  );
+
+  timers.push(
+    setTimeout(function () {
+      message.textContent = "Do it with me! ";
+    }, 3100),
+  );
+
+  timers.push(
+    setTimeout(function () {
+      message.textContent = "Do it with me! !";
+    }, 3200),
+  );
+
+  timers.push(
+    setTimeout(function () {
+      message.textContent = "Do it with me! ! !";
+    }, 3300),
+  );
+
+  timers.push(
+    setTimeout(function () {
+      message.textContent = "Do it with me! ! ! !";
+    }, 3400),
   );
 
   timers.push(
     setTimeout(function () {
       message.textContent = "";
-      init();
-      gameStarted = true;
       maze.classList.remove("hidden");
       controls.classList.remove("hidden");
-    }, 2000),
+      init();
+      gameStarted = true;
+    }, 6000),
   );
 });
 
