@@ -84,11 +84,12 @@ button:active {
 }
 
 #message {
-  font-size: 100px;
+  font-size: 80px;
   font-weight: bold;
   color: #e2e8f0;
   margin: 20px 0px;
   letter-spacing: 2px;
+  white-space: pre-line;
 }
 
 #maze.hidden, /* WOW you can do this. */

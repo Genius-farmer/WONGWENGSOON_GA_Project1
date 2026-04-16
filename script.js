@@ -636,6 +636,69 @@ faButton.addEventListener("click", function () {
   }
 });
 
+function movePlaneDemo(note) {
+  let playerNewPosition = playerInitPosition;
+
+  if (note === "do") {
+    playerNewPosition = playerInitPosition + 1;
+  } else if (note === "re") {
+    playerNewPosition = playerInitPosition + 3;
+  } else if (note === "mi") {
+    playerNewPosition = playerInitPosition - 1;
+  } else if (note === "fa") {
+    playerNewPosition = playerInitPosition - 3;
+  }
+
+  let previousCell = document.querySelector("#cell-" + playerInitPosition);
+  let currentCell = document.querySelector("#cell-" + playerNewPosition);
+
+  previousCell.textContent = "";
+  previousCell.classList.add("visited");
+  previousCell.classList.remove("current");
+
+  currentCell.classList.add("visited");
+  currentCell.classList.add("current");
+  currentCell.textContent = "✈️";
+
+  playerInitPosition = playerNewPosition;
+}
+
+function showInstructionsDemo() {
+  resetGame();
+  instructionsButton.classList.remove("hidden");
+  maze.classList.remove("hidden");
+  controls.classList.add("hidden");
+  gameStarted = false;
+
+  message.textContent = "Watch how the notes move the plane";
+  init();
+
+  const demoNotes = ["do", "re", "mi", "fa"];
+
+  demoNotes.forEach(function (note, index) {
+    timers.push(
+      setTimeout(
+        function () {
+          message.textContent = note.toUpperCase();
+          playNoteSound(note);
+          movePlaneDemo(note);
+        },
+        1200 + index * 1000,
+      ),
+    );
+  });
+
+  timers.push(
+    setTimeout(
+      function () {
+        message.textContent =
+          "Memorize the notes before the game starts. \n Repeat them correctly to reach the next round!";
+      },
+      1200 + demoNotes.length * 1000,
+    ),
+  );
+}
+
 function startBonusRound() {
   gameStarted = false;
   controls.classList.add("hidden");
@@ -696,6 +759,11 @@ function resetGame() {
   });
   timers = [];
 }
+
+instructionsButton.addEventListener("click", function () {
+  showInstructionsDemo();
+});
+
 resetButton.addEventListener("click", function () {
   console.log("RESET GAME RAN");
   round = 1;
