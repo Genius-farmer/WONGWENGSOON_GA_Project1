@@ -1,3 +1,4 @@
+let round = 1;
 let playerInitPosition = 4;
 let gameStarted = false;
 let timers = [];
@@ -18,6 +19,172 @@ const gameOverScreen = document.querySelector("#game-over");
 const restartButton = document.querySelector("#restart");
 const instructionsButton = document.querySelector("#instructions");
 
+// start of new function 16 apr 2344
+function startRound() {
+  console.log("START CLICKED");
+  instructionsButton.classList.add("hidden");
+  resetGame();
+  playIntroSound();
+  message.textContent = "Ready ! ! ! ! ! ! ! !";
+
+  let currentGamePosition = 4;
+  let visitedGamePosition = [4];
+  gameGenNotes = [];
+
+  let roundLength = round + 2;
+
+  for (let i = 0; i < roundLength; i++) {
+    let validMoves = [];
+
+    if (
+      currentGamePosition % 3 !== 2 &&
+      !visitedGamePosition.includes(currentGamePosition + 1)
+    ) {
+      validMoves.push("do");
+    }
+    if (
+      currentGamePosition % 3 !== 0 &&
+      !visitedGamePosition.includes(currentGamePosition - 1)
+    ) {
+      validMoves.push("mi");
+    }
+    if (
+      currentGamePosition < 6 &&
+      !visitedGamePosition.includes(currentGamePosition + 3)
+    ) {
+      validMoves.push("re");
+    }
+    if (
+      currentGamePosition > 2 &&
+      !visitedGamePosition.includes(currentGamePosition - 3)
+    ) {
+      validMoves.push("fa");
+    }
+
+    let randomMove = validMoves[Math.floor(Math.random() * validMoves.length)];
+    let newPosition;
+
+    if (randomMove === "do") newPosition = currentGamePosition + 1;
+    if (randomMove === "mi") newPosition = currentGamePosition - 1;
+    if (randomMove === "re") newPosition = currentGamePosition + 3;
+    if (randomMove === "fa") newPosition = currentGamePosition - 3;
+
+    currentGamePosition = newPosition;
+    visitedGamePosition.push(newPosition);
+    gameGenNotes.push(randomMove);
+  }
+
+  console.log("Round:", round);
+  console.log(gameGenNotes);
+
+  timers.push(
+    setTimeout(function () {
+      message.textContent = "";
+    }, 2200),
+  );
+
+  timers.push(
+    setTimeout(function () {
+      message.textContent = "Do";
+    }, 2300),
+  );
+
+  timers.push(
+    setTimeout(function () {
+      message.textContent = "Do it";
+    }, 2600),
+  );
+
+  timers.push(
+    setTimeout(function () {
+      message.textContent = "Do it with";
+    }, 2800),
+  );
+
+  timers.push(
+    setTimeout(function () {
+      message.textContent = "Do it with me";
+    }, 3000),
+  );
+
+  timers.push(
+    setTimeout(function () {
+      message.textContent = "Do it with me! ";
+    }, 3100),
+  );
+
+  timers.push(
+    setTimeout(function () {
+      message.textContent = "Do it with me! !";
+    }, 3200),
+  );
+
+  timers.push(
+    setTimeout(function () {
+      message.textContent = "Do it with me! ! !";
+    }, 3300),
+  );
+
+  timers.push(
+    setTimeout(function () {
+      message.textContent = "Do it with me! ! ! !";
+    }, 3400),
+  );
+
+  timers.push(
+    setTimeout(function () {
+      message.textContent = "ONE";
+    }, 3800),
+  );
+  timers.push(
+    setTimeout(function () {
+      message.textContent = "TWO";
+    }, 4200),
+  );
+
+  timers.push(
+    setTimeout(function () {
+      message.textContent = "THREE";
+    }, 4600),
+  );
+
+  timers.push(
+    setTimeout(function () {
+      message.textContent = "GO";
+    }, 5000),
+  );
+
+  for (let i = 0; i < gameGenNotes.length; i++) {
+    timers.push(
+      setTimeout(
+        function () {
+          message.textContent = gameGenNotes[i];
+          playNoteSound(gameGenNotes[i]);
+        },
+        5500 + i * 500,
+      ),
+    );
+  }
+  let gameStartDelay = 5500 + gameGenNotes.length * 500;
+
+  timers.push(
+    setTimeout(function () {
+      message.textContent = "";
+      maze.classList.remove("hidden");
+      controls.classList.remove("hidden");
+      instructionsButton.classList.add("hidden");
+      init();
+      gameStarted = true;
+    }, gameStartDelay),
+  );
+}
+
+startButton.addEventListener("click", function () {
+  round = 1;
+  startRound();
+});
+
+/*
 startButton.addEventListener("click", function () {
   console.log("START CLICKED");
   instructionsButton.classList.add("hidden");
@@ -181,7 +348,9 @@ startButton.addEventListener("click", function () {
       gameStarted = true;
     }, 7000),
   );
+  
 });
+*/
 
 function init() {
   const startCell = document.querySelector("#cell-" + playerInitPosition);
@@ -210,11 +379,24 @@ doButton.addEventListener("click", function () {
     return;
   }
 
+  // DO WINNNNNNNN
   if (playerInput.length === gameGenNotes.length) {
-    message.textContent = "YOU WIN";
-    controls.classList.add("hidden");
     gameStarted = false;
-    console.log("correct round!");
+    controls.classList.add("hidden");
+
+    if (round < 3) {
+      message.textContent = "ROUND" + round + " CLEARED!";
+      round++; //"ROUND" <-- text, don't forget "_CLEARED" got spacing!
+
+      timer.push(
+        setTimeout(function () {
+          startRound();
+        }, 1500),
+      );
+    } else {
+      message.textContent = "YOU WIN";
+      console.log("ALL ROUNDS CLEARED");
+    }
     return;
   }
 
@@ -404,8 +586,8 @@ function resetGame() {
   maze.classList.add("hidden");
   controls.classList.add("hidden");
   gameStarted = false;
-
-  message.textContent = ""; //removes GOOOOO that appears when i press reset
+  message.textContent = ""; //removes text that appears when i press reset
+  round = 1; //return to round 1 cos you press reset
 
   timers.forEach(function (timer) {
     clearTimeout(timer);
