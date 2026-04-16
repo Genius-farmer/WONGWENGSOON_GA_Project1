@@ -7,11 +7,19 @@ main {
   color: #f8fafc;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  height: 100vh;
-  gap: 50px;
+
+  padding-top: 60px;
+  min-height: 100vh;
+  gap: 40px;
   /* margin: 0; */
+}
+
+h1 {
+  font-size: 84px;
+  font-weight: bold;
+  color: white;
+  margin: 0;
 }
 
 #maze {
@@ -24,10 +32,23 @@ main {
 }
 
 button {
-  padding: 60px 120px;
-  font-size: 50px;
-  border-radius: 60px;
-  background-color: blanchedalmond;
+  padding: 40px 80px;
+  font-size: 36px;
+  border-radius: 20px;
+  background-color: rgba(255, 255, 255, 0.15);
+  color: black;
+  border: none;
+  backdrop-filter: blur(5px);
+  transition: all 0.2s ease;
+}
+
+button:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+  transform: scale(1.08);
+}
+
+button:active {
+  transform: scale(0.95);
 }
 
 #controls {
@@ -35,28 +56,39 @@ button {
   gap: 10px;
 }
 
+#controls button {
+  padding: 60px 120px;
+  font-size: 48px;
+}
+
 .cell {
   width: 250px;
   height: 250px;
-  background-color: rgba(255,255,255,0.15);
+  background-color: rgba(255, 255, 255, 0.15);
   border-radius: 12px;
-
   display: flex;
   justify-content: center; /*this centers the left right */
   align-items: center; /*this centers top and bottom*/
-
   font-size: 120px;
   transition: all 0.2s ease;
 }
 
 .visited {
-  background-color: rgba(255,255,255,0.25);
+  background-color: rgba(255, 255, 255, 0.25);
 }
 
 .current {
   background-color: #38bdf8;
   box-shadow: 0 0 25px #38bdf8;
-  transform scale(1.05);
+  transform: scale(1.05);
+}
+
+#message {
+  font-size: 100px;
+  font-weight: bold;
+  color: #e2e8f0;
+  margin: 20px 0px;
+  letter-spacing: 2px;
 }
 
 #maze.hidden, /* WOW you can do this. */
@@ -75,8 +107,7 @@ button {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.7);
-
+  background: rgba(0, 0, 0, 0.85);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -87,4 +118,12 @@ button {
 
 .hidden {
   display: none;
+}
+
+#game-over h2 {
+  font-size: 200px;
+  font-weight: bold;
+  color: #f87171;
+  text-shadow: 0 0 20px #f87171;
+  margin-bottom: 20px;
 }
