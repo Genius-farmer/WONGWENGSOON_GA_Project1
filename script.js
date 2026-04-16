@@ -3,6 +3,7 @@ let gameStarted = false;
 let timers = [];
 let validMoves = [];
 let playerInput = [];
+let gameGenNotes = [];
 const doButton = document.querySelector("#do");
 //querySelector pick 1 element! means inside the ID only got 1 element
 const maze = document.querySelector("#maze");
@@ -21,12 +22,9 @@ startButton.addEventListener("click", function () {
 
   message.textContent = "Ready ! ! ! ! ! ! ! !";
 
-  playerInput.push("do");
-  console.log(playerInput);
-
   let currentGamePosition = 4;
   let visitedGamePosition = [4];
-  let gameGenNotes = [];
+  gameGenNotes = [];
 
   for (let i = 0; i < 3; i++) {
     let validMoves = [];
@@ -186,6 +184,24 @@ doButton.addEventListener("click", function () {
   if (!gameStarted) {
     return;
   }
+  playerInput.push("do");
+  console.log("playerInput", playerInput);
+  console.log("gameGenNotes", gameGenNotes);
+  console.log(playerInput);
+
+  let currentIndex = playerInput.length - 1;
+  console.log("index", currentIndex);
+  console.log("compare", playerInput[currentIndex], gameGenNotes[currentIndex]);
+
+  if (playerInput[currentIndex] !== gameGenNotes[currentIndex]) {
+    console.log("WRONG!!");
+    return;
+  }
+
+  if (playerInput.length === gameGenNotes.length) {
+    console.log("correct round!");
+  }
+
   if (playerInitPosition % 3 == 2) {
     /*this is checking if it is reaching to the edge of the board*/
     return; /* the return here just mean exit the early) , exit the function early*/
@@ -288,6 +304,8 @@ function resetGame() {
   });
   playerInitPosition = 4;
   console.log(playerInitPosition);
+  gameGenNotes = [];
+  playerInput = [];
   maze.classList.add("hidden");
   controls.classList.add("hidden");
   gameStarted = false;
