@@ -385,10 +385,10 @@ doButton.addEventListener("click", function () {
     controls.classList.add("hidden");
 
     if (round < 3) {
-      message.textContent = "ROUND" + round + " CLEARED!";
+      message.textContent = "ROUND " + round + " CLEARED!";
       round++; //"ROUND" <-- text, don't forget "_CLEARED" got spacing!
 
-      timer.push(
+      timers.push(
         setTimeout(function () {
           startRound();
         }, 1500),
@@ -448,10 +448,22 @@ reButton.addEventListener("click", function () {
   }
 
   if (playerInput.length === gameGenNotes.length) {
-    message.textContent = "YOU WIN";
-    controls.classList.add("hidden");
     gameStarted = false;
-    console.log("correct round!");
+    controls.classList.add("hidden");
+
+    if (round < 3) {
+      message.textContent = "ROUND " + round + " CLEARED!";
+      round++; //"ROUND" <-- text, don't forget "_CLEARED" got spacing!
+
+      timers.push(
+        setTimeout(function () {
+          startRound();
+        }, 1500),
+      );
+    } else {
+      message.textContent = "YOU WIN";
+      console.log("ALL ROUNDS CLEARED");
+    }
     return;
   }
 
@@ -498,10 +510,22 @@ miButton.addEventListener("click", function () {
   }
 
   if (playerInput.length === gameGenNotes.length) {
-    message.textContent = "YOU WIN";
-    controls.classList.add("hidden");
     gameStarted = false;
-    console.log("correct round!");
+    controls.classList.add("hidden");
+
+    if (round < 3) {
+      message.textContent = "ROUND " + round + " CLEARED!";
+      round++; //"ROUND" <-- text, don't forget "_CLEARED" got spacing!
+
+      timers.push(
+        setTimeout(function () {
+          startRound();
+        }, 1500),
+      );
+    } else {
+      message.textContent = "YOU WIN";
+      console.log("ALL ROUNDS CLEARED");
+    }
     return;
   }
 
@@ -549,10 +573,22 @@ faButton.addEventListener("click", function () {
   }
 
   if (playerInput.length === gameGenNotes.length) {
-    message.textContent = "YOU WIN";
-    controls.classList.add("hidden");
     gameStarted = false;
-    console.log("correct round!");
+    controls.classList.add("hidden");
+
+    if (round < 3) {
+      message.textContent = "ROUND " + round + " CLEARED!";
+      round++; //"ROUND" <-- text, don't forget "_CLEARED" got spacing!
+
+      timers.push(
+        setTimeout(function () {
+          startRound();
+        }, 1500),
+      );
+    } else {
+      message.textContent = "YOU WIN";
+      console.log("ALL ROUNDS CLEARED");
+    }
     return;
   }
 
@@ -587,7 +623,6 @@ function resetGame() {
   controls.classList.add("hidden");
   gameStarted = false;
   message.textContent = ""; //removes text that appears when i press reset
-  round = 1; //return to round 1 cos you press reset
 
   timers.forEach(function (timer) {
     clearTimeout(timer);
@@ -596,6 +631,7 @@ function resetGame() {
 }
 resetButton.addEventListener("click", function () {
   console.log("RESET GAME RAN");
+  round = 1;
   resetGame();
   instructionsButton.classList.remove("hidden");
 });
