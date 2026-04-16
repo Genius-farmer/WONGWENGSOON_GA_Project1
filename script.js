@@ -639,7 +639,7 @@ function resetGame() {
     square.classList.remove("current");
     square.classList.remove("visited");
     console.log(square.id, square.textContent);
-    square.textContent = square.id.split("-")[1];
+    square.textContent = "";
     console.log(square.id, square.textContent);
   });
   playerInitPosition = 4;
