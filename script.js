@@ -2,7 +2,6 @@ let round = 1;
 let playerInitPosition = 4;
 let gameStarted = false;
 let timers = [];
-let validMoves = [];
 let playerInput = [];
 let gameGenNotes = [];
 const doButton = document.querySelector("#do");
@@ -379,7 +378,26 @@ doButton.addEventListener("click", function () {
     return;
   }
 
-  // DO WINNNNNNNN
+  //move FIRST [movement action]
+  if (playerInitPosition % 3 == 2) {
+    /*this is checking if it is reaching to the edge of the board*/
+    return; /* the return here just mean exit the early) , exit the function early*/
+  }
+  let playerNewPosition = playerInitPosition + 1;
+  console.log(playerInitPosition);
+  let previousCell = document.querySelector("#cell-" + playerInitPosition);
+  let currentCell = document.querySelector("#cell-" + playerNewPosition);
+
+  previousCell.textContent = "";
+  previousCell.classList.add("visited");
+  previousCell.classList.remove("current");
+  currentCell.classList.add("visited");
+  currentCell.classList.add("current");
+  currentCell.textContent = "✈️";
+
+  playerInitPosition = playerNewPosition;
+
+  // DO CHECK WINNN
   if (playerInput.length === gameGenNotes.length) {
     gameStarted = false;
     controls.classList.add("hidden");
@@ -400,22 +418,7 @@ doButton.addEventListener("click", function () {
     return;
   }
 
-  if (playerInitPosition % 3 == 2) {
-    /*this is checking if it is reaching to the edge of the board*/
-    return; /* the return here just mean exit the early) , exit the function early*/
-  }
-  let playerNewPosition = playerInitPosition + 1;
   /* - if condition not true, doesn't return, move into this line */
-  console.log(playerInitPosition);
-  let previousCell = document.querySelector("#cell-" + playerInitPosition);
-  let currentCell = document.querySelector("#cell-" + playerNewPosition);
-  previousCell.textContent = "";
-  previousCell.classList.add("visited");
-  previousCell.classList.remove("current");
-  currentCell.classList.add("visited");
-  currentCell.classList.add("current");
-  currentCell.textContent = "✈️";
-  playerInitPosition = playerNewPosition;
 });
 
 // re button!!!!
@@ -436,6 +439,7 @@ reButton.addEventListener("click", function () {
   console.log("playerInput", playerInput);
   console.log("gameGenNotes", gameGenNotes);
   console.log(playerInput);
+
   let currentIndex = playerInput.length - 1;
   console.log("index", currentIndex);
   console.log("compare", playerInput[currentIndex], gameGenNotes[currentIndex]);
@@ -447,6 +451,24 @@ reButton.addEventListener("click", function () {
     return;
   }
 
+  // RE MOVEMENT FIRST
+  let playerNewPosition = playerInitPosition + 3;
+  console.log(playerInitPosition);
+
+  let previousCell = document.querySelector("#cell-" + playerInitPosition);
+  let currentCell = document.querySelector("#cell-" + playerNewPosition);
+
+  previousCell.textContent = "";
+  previousCell.classList.add("visited");
+  previousCell.classList.remove("current");
+
+  currentCell.classList.add("visited");
+  currentCell.classList.add("current");
+  currentCell.textContent = "✈️";
+
+  playerInitPosition = playerNewPosition;
+
+  // RE CHECK WIN
   if (playerInput.length === gameGenNotes.length) {
     gameStarted = false;
     controls.classList.add("hidden");
@@ -466,18 +488,6 @@ reButton.addEventListener("click", function () {
     }
     return;
   }
-
-  let playerNewPosition = playerInitPosition + 3;
-  console.log(playerInitPosition);
-  let previousCell = document.querySelector("#cell-" + playerInitPosition);
-  let currentCell = document.querySelector("#cell-" + playerNewPosition);
-  previousCell.textContent = "";
-  previousCell.classList.add("visited");
-  previousCell.classList.remove("current");
-  currentCell.classList.add("visited");
-  currentCell.classList.add("current");
-  currentCell.textContent = "✈️";
-  playerInitPosition = playerNewPosition;
 });
 
 // MI
@@ -509,6 +519,25 @@ miButton.addEventListener("click", function () {
     return;
   }
 
+  // MI MOVEMENT
+  let playerNewPosition = playerInitPosition - 1;
+  console.log(playerInitPosition);
+
+  let previousCell = document.querySelector("#cell-" + playerInitPosition);
+  let currentCell = document.querySelector("#cell-" + playerNewPosition);
+
+  previousCell.textContent = "";
+  previousCell.classList.add("visited");
+  previousCell.classList.remove("current");
+
+  currentCell.classList.add("visited");
+  currentCell.classList.add("current");
+  currentCell.textContent = "✈️";
+
+  playerInitPosition = playerNewPosition;
+
+  // MI CHECK WIN
+
   if (playerInput.length === gameGenNotes.length) {
     gameStarted = false;
     controls.classList.add("hidden");
@@ -528,18 +557,6 @@ miButton.addEventListener("click", function () {
     }
     return;
   }
-
-  let playerNewPosition = playerInitPosition - 1;
-  console.log(playerInitPosition);
-  let previousCell = document.querySelector("#cell-" + playerInitPosition);
-  let currentCell = document.querySelector("#cell-" + playerNewPosition);
-  previousCell.textContent = "";
-  previousCell.classList.add("visited");
-  previousCell.classList.remove("current");
-  currentCell.classList.add("visited");
-  currentCell.classList.add("current");
-  currentCell.textContent = "✈️";
-  playerInitPosition = playerNewPosition;
 });
 
 //Fa
@@ -561,16 +578,38 @@ faButton.addEventListener("click", function () {
   console.log("playerInput", playerInput);
   console.log("gameGenNotes", gameGenNotes);
   console.log(playerInput);
+
   let currentIndex = playerInput.length - 1;
   console.log("index", currentIndex);
   console.log("compare", playerInput[currentIndex], gameGenNotes[currentIndex]);
 
+  //FA WRONG CHECK FIRST
   if (playerInput[currentIndex] !== gameGenNotes[currentIndex]) {
     gameOverScreen.classList.remove("hidden");
     gameStarted = false;
     console.log("WRONG!!");
     return;
   }
+
+  // FA MOVEMENT
+
+  let playerNewPosition = playerInitPosition - 3;
+  console.log(playerInitPosition);
+
+  let previousCell = document.querySelector("#cell-" + playerInitPosition);
+  let currentCell = document.querySelector("#cell-" + playerNewPosition);
+
+  previousCell.textContent = "";
+  previousCell.classList.add("visited");
+  previousCell.classList.remove("current");
+
+  currentCell.classList.add("visited");
+  currentCell.classList.add("current");
+  currentCell.textContent = "✈️";
+
+  playerInitPosition = playerNewPosition;
+
+  // CHECK WIN
 
   if (playerInput.length === gameGenNotes.length) {
     gameStarted = false;
@@ -591,18 +630,6 @@ faButton.addEventListener("click", function () {
     }
     return;
   }
-
-  let playerNewPosition = playerInitPosition - 3;
-  console.log(playerInitPosition);
-  let previousCell = document.querySelector("#cell-" + playerInitPosition);
-  let currentCell = document.querySelector("#cell-" + playerNewPosition);
-  previousCell.textContent = "";
-  previousCell.classList.add("visited");
-  previousCell.classList.remove("current");
-  currentCell.classList.add("visited");
-  currentCell.classList.add("current");
-  currentCell.textContent = "✈️";
-  playerInitPosition = playerNewPosition;
 });
 
 function resetGame() {
@@ -638,6 +665,7 @@ resetButton.addEventListener("click", function () {
 
 restartButton.addEventListener("click", function () {
   gameOverScreen.classList.add("hidden");
+  round = 1;
   resetGame();
   instructionsButton.classList.remove("hidden");
   // startButton.click(); // auto restart
