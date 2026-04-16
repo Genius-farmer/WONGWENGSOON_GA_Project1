@@ -16,9 +16,11 @@ const startButton = document.querySelector("#start");
 const resetButton = document.querySelector("#reset");
 const gameOverScreen = document.querySelector("#game-over");
 const restartButton = document.querySelector("#restart");
+const instructionsButton = document.querySelector("#instructions");
 
 startButton.addEventListener("click", function () {
   console.log("START CLICKED");
+  instructionsButton.classList.add("hidden");
   resetGame(); // clean the board/data inside
   console.log("RESET CLICKED");
 
@@ -170,6 +172,7 @@ startButton.addEventListener("click", function () {
       message.textContent = "";
       maze.classList.remove("hidden");
       controls.classList.remove("hidden");
+      instructionsButton.classList.add("hidden");
       init();
       gameStarted = true;
     }, 7000),
@@ -203,7 +206,11 @@ doButton.addEventListener("click", function () {
   }
 
   if (playerInput.length === gameGenNotes.length) {
+    message.textContent = "YOU WIN";
+    controls.classList.add("hidden");
+    gameStarted = false;
     console.log("correct round!");
+    return;
   }
 
   if (playerInitPosition % 3 == 2) {
@@ -246,13 +253,18 @@ reButton.addEventListener("click", function () {
   console.log("compare", playerInput[currentIndex], gameGenNotes[currentIndex]);
 
   if (playerInput[currentIndex] !== gameGenNotes[currentIndex]) {
+    gameOverScreen.classList.remove("hidden");
     gameStarted = false;
     console.log("WRONG!!");
     return;
   }
 
   if (playerInput.length === gameGenNotes.length) {
+    message.textContent = "YOU WIN";
+    controls.classList.add("hidden");
+    gameStarted = false;
     console.log("correct round!");
+    return;
   }
 
   let playerNewPosition = playerInitPosition + 3;
@@ -290,13 +302,18 @@ miButton.addEventListener("click", function () {
   console.log("compare", playerInput[currentIndex], gameGenNotes[currentIndex]);
 
   if (playerInput[currentIndex] !== gameGenNotes[currentIndex]) {
+    gameOverScreen.classList.remove("hidden");
     gameStarted = false;
     console.log("WRONG!!");
     return;
   }
 
   if (playerInput.length === gameGenNotes.length) {
+    message.textContent = "YOU WIN";
+    controls.classList.add("hidden");
+    gameStarted = false;
     console.log("correct round!");
+    return;
   }
 
   let playerNewPosition = playerInitPosition - 1;
@@ -311,6 +328,8 @@ miButton.addEventListener("click", function () {
   currentCell.textContent = "✈️";
   playerInitPosition = playerNewPosition;
 });
+
+//Fa
 
 faButton.addEventListener("click", function () {
   if (!gameStarted) {
@@ -333,13 +352,18 @@ faButton.addEventListener("click", function () {
   console.log("compare", playerInput[currentIndex], gameGenNotes[currentIndex]);
 
   if (playerInput[currentIndex] !== gameGenNotes[currentIndex]) {
+    gameOverScreen.classList.remove("hidden");
     gameStarted = false;
     console.log("WRONG!!");
     return;
   }
 
   if (playerInput.length === gameGenNotes.length) {
+    message.textContent = "YOU WIN";
+    controls.classList.add("hidden");
+    gameStarted = false;
     console.log("correct round!");
+    return;
   }
 
   let playerNewPosition = playerInitPosition - 3;
@@ -382,11 +406,13 @@ function resetGame() {
 resetButton.addEventListener("click", function () {
   console.log("RESET GAME RAN");
   resetGame();
+  instructionsButton.classList.remove("hidden");
 });
 
 restartButton.addEventListener("click", function () {
   gameOverScreen.classList.add("hidden");
   resetGame();
+  instructionsButton.classList.remove("hidden");
   // startButton.click(); // auto restart
 });
 

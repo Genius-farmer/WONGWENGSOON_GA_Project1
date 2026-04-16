@@ -79,3 +79,7 @@ button {
   font-size: 40px;
   z-index: 1000;
 }
+
+.hidden {
+  display: none;
+}
