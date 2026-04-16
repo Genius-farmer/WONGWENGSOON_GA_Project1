@@ -1,5 +1,6 @@
 let playerInitPosition = 4;
 let gameStarted = false;
+let timers = [];
 const doButton = document.querySelector("#do");
 //querySelector pick 1 element! means inside the ID only got 1 element
 const maze = document.querySelector("#maze");
@@ -15,32 +16,42 @@ startButton.addEventListener("click", function () {
   console.log("START CLICKED");
   resetGame(); // clean the board/data inside
   console.log("RESET CLICKED");
-  maze.classList.remove("hidden");
-  controls.classList.remove("hidden");
 
   message.textContent = "Ready ! ! ! ! ! ! ! ! ";
 
-  setTimeout(function () {
-    message.textContent = "";
-  }, 1000);
+  timers.push(
+    setTimeout(function () {
+      message.textContent = "";
+    }, 1000),
+  );
 
-  setTimeout(function () {
-    message.textContent = "! ! ! ! ! WHYYY ! ! ! ! ! ! ! !";
-  }, 1000);
+  timers.push(
+    setTimeout(function () {
+      message.textContent = "ONE TWO THREE";
+    }, 2000),
+  );
 
-  setTimeout(function () {
-    message.textContent = "";
-  }, 1000);
+  timers.push(
+    setTimeout(function () {
+      message.textContent = "";
+    }, 1000),
+  );
 
-  setTimeout(function () {
-    message.textContent = "GOOOOOOOOOOOO!!";
-  }, 3000);
+  timers.push(
+    setTimeout(function () {
+      message.textContent = "GOOOOOOOOOOOO!!";
+    }, 5000),
+  );
 
-  setTimeout(function () {
-    message.textContent = "";
-    init();
-    gameStarted = true;
-  }, 2000);
+  timers.push(
+    setTimeout(function () {
+      message.textContent = "";
+      init();
+      gameStarted = true;
+      maze.classList.remove("hidden");
+      controls.classList.remove("hidden");
+    }, 2000),
+  );
 });
 
 function init() {
@@ -157,6 +168,13 @@ function resetGame() {
   maze.classList.add("hidden");
   controls.classList.add("hidden");
   gameStarted = false;
+
+  message.textContent = ""; //removes GOOOOO that appears when i press reset
+
+  timers.forEach(function (timer) {
+    clearTimeout(timer);
+  });
+  timers = [];
 }
 resetButton.addEventListener("click", function () {
   console.log("RESET GAME RAN");
