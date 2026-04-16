@@ -412,8 +412,9 @@ doButton.addEventListener("click", function () {
         }, 1500),
       );
     } else {
-      message.textContent = "YOU WIN";
+      // message.textContent = "YOU WIN";
       console.log("ALL ROUNDS CLEARED");
+      startBonusRound();
     }
     return;
   }
@@ -483,8 +484,9 @@ reButton.addEventListener("click", function () {
         }, 1500),
       );
     } else {
-      message.textContent = "YOU WIN";
+      // message.textContent = "YOU WIN";
       console.log("ALL ROUNDS CLEARED");
+      startBonusRound();
     }
     return;
   }
@@ -552,8 +554,9 @@ miButton.addEventListener("click", function () {
         }, 1500),
       );
     } else {
-      message.textContent = "YOU WIN";
+      // message.textContent = "YOU WIN";
       console.log("ALL ROUNDS CLEARED");
+      startBonusRound();
     }
     return;
   }
@@ -625,12 +628,49 @@ faButton.addEventListener("click", function () {
         }, 1500),
       );
     } else {
-      message.textContent = "YOU WIN";
+      // message.textContent = "YOU WIN";
       console.log("ALL ROUNDS CLEARED");
+      startBonusRound();
     }
     return;
   }
 });
+
+function startBonusRound() {
+  gameStarted = false;
+  controls.classList.add("hidden");
+  message.classList.remove("win-glow");
+  message.classList.add("bonus-glow");
+
+  message.textContent = "BONUS ROUND...";
+
+  timers.push(
+    setTimeout(function () {
+      message.textContent = "WATCH CAREFULLY...";
+    }, 1000),
+  );
+
+  timers.push(
+    setTimeout(function () {
+      message.textContent = "do";
+      playNoteSound("do");
+    }, 2000),
+  );
+
+  timers.push(
+    setTimeout(function () {
+      message.textContent = "re";
+      playNoteSound("re");
+    }, 2600),
+  );
+
+  timers.push(
+    setTimeout(function () {
+      message.textContent = "NEVER GONNA GIVE YOU UP";
+      playRickRollSound();
+    }, 3400),
+  );
+}
 
 function resetGame() {
   stopIntroSound();
