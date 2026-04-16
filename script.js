@@ -1,6 +1,7 @@
 let playerInitPosition = 4;
 let gameStarted = false;
 let timers = [];
+let validMoves = [];
 const doButton = document.querySelector("#do");
 //querySelector pick 1 element! means inside the ID only got 1 element
 const maze = document.querySelector("#maze");
@@ -18,6 +19,52 @@ startButton.addEventListener("click", function () {
   console.log("RESET CLICKED");
 
   message.textContent = "Ready ! ! ! ! ! ! ! !";
+
+  let currentGamePosition = 4;
+  let visitedGamePosition = [4];
+  let gameGenNotes = [];
+
+  for (let i = 0; i < 3; i++) {
+    let validMoves = [];
+    if (
+      currentGamePosition % 3 !== 2 &&
+      !visitedGamePosition.includes(currentGamePosition + 1)
+    ) {
+      validMoves.push("do");
+    }
+    if (
+      currentGamePosition % 3 !== 0 &&
+      !visitedGamePosition.includes(currentGamePosition - 1)
+    ) {
+      validMoves.push("mi");
+    }
+    if (
+      currentGamePosition < 6 &&
+      !visitedGamePosition.includes(currentGamePosition + 3)
+    ) {
+      validMoves.push("re");
+    }
+    if (
+      currentGamePosition > 2 &&
+      !visitedGamePosition.includes(currentGamePosition - 3)
+    ) {
+      validMoves.push("fa");
+    }
+
+    let randomMove = validMoves[Math.floor(Math.random() * validMoves.length)];
+
+    let newPosition;
+
+    if (randomMove === "do") newPosition = currentGamePosition + 1;
+    if (randomMove === "mi") newPosition = currentGamePosition - 1;
+    if (randomMove === "re") newPosition = currentGamePosition + 3;
+    if (randomMove === "fa") newPosition = currentGamePosition - 3;
+
+    currentGamePosition = newPosition;
+    visitedGamePosition.push(newPosition);
+    gameGenNotes.push(randomMove);
+  }
+  console.log(gameGenNotes);
 
   timers.push(
     setTimeout(function () {
@@ -75,6 +122,29 @@ startButton.addEventListener("click", function () {
 
   timers.push(
     setTimeout(function () {
+      message.textContent = "ONE";
+    }, 3800),
+  );
+  timers.push(
+    setTimeout(function () {
+      message.textContent = "TWO";
+    }, 4200),
+  );
+
+  timers.push(
+    setTimeout(function () {
+      message.textContent = "THREE";
+    }, 4600),
+  );
+
+  timers.push(
+    setTimeout(function () {
+      message.textContent = "GO";
+    }, 5000),
+  );
+
+  timers.push(
+    setTimeout(function () {
       message.textContent = "";
       maze.classList.remove("hidden");
       controls.classList.remove("hidden");
@@ -112,6 +182,7 @@ doButton.addEventListener("click", function () {
   playerInitPosition = playerNewPosition;
 });
 
+// mi button!!!!
 reButton.addEventListener("click", function () {
   if (!gameStarted) {
     return;
@@ -210,3 +281,9 @@ resetButton.addEventListener("click", function () {
   console.log("RESET GAME RAN");
   resetGame();
 });
+
+// check do, re, mi, fa → push valid ones
+
+// pick randomMove
+
+// update position, visited, notes
