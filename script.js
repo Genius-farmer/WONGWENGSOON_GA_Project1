@@ -2,6 +2,7 @@ let playerInitPosition = 4;
 let gameStarted = false;
 let timers = [];
 let validMoves = [];
+let playerInput = [];
 const doButton = document.querySelector("#do");
 //querySelector pick 1 element! means inside the ID only got 1 element
 const maze = document.querySelector("#maze");
@@ -19,6 +20,9 @@ startButton.addEventListener("click", function () {
   console.log("RESET CLICKED");
 
   message.textContent = "Ready ! ! ! ! ! ! ! !";
+
+  playerInput.push("do");
+  console.log(playerInput);
 
   let currentGamePosition = 4;
   let visitedGamePosition = [4];
@@ -145,12 +149,30 @@ startButton.addEventListener("click", function () {
 
   timers.push(
     setTimeout(function () {
+      message.textContent = gameGenNotes[0];
+    }, 5500),
+  );
+
+  timers.push(
+    setTimeout(function () {
+      message.textContent = gameGenNotes[1];
+    }, 6000),
+  );
+
+  timers.push(
+    setTimeout(function () {
+      message.textContent = gameGenNotes[2];
+    }, 6500),
+  );
+
+  timers.push(
+    setTimeout(function () {
       message.textContent = "";
       maze.classList.remove("hidden");
       controls.classList.remove("hidden");
       init();
       gameStarted = true;
-    }, 6000),
+    }, 7000),
   );
 });
 
