@@ -152,18 +152,21 @@ startButton.addEventListener("click", function () {
   timers.push(
     setTimeout(function () {
       message.textContent = gameGenNotes[0];
+      playNoteSound(gameGenNotes[0]);
     }, 5500),
   );
 
   timers.push(
     setTimeout(function () {
       message.textContent = gameGenNotes[1];
+      playNoteSound(gameGenNotes[1]);
     }, 6000),
   );
 
   timers.push(
     setTimeout(function () {
       message.textContent = gameGenNotes[2];
+      playNoteSound(gameGenNotes[2]);
     }, 6500),
   );
 
@@ -190,6 +193,7 @@ doButton.addEventListener("click", function () {
     return;
   }
   playerInput.push("do");
+  playNoteSound("do");
   console.log("playerInput", playerInput);
   console.log("gameGenNotes", gameGenNotes);
   console.log(playerInput);
@@ -245,6 +249,7 @@ reButton.addEventListener("click", function () {
   }
 
   playerInput.push("re");
+  playNoteSound("re");
   console.log("playerInput", playerInput);
   console.log("gameGenNotes", gameGenNotes);
   console.log(playerInput);
@@ -294,6 +299,7 @@ miButton.addEventListener("click", function () {
   }
 
   playerInput.push("mi");
+  playNoteSound("mi");
   console.log("playerInput", playerInput);
   console.log("gameGenNotes", gameGenNotes);
   console.log(playerInput);
@@ -344,6 +350,7 @@ faButton.addEventListener("click", function () {
   }
 
   playerInput.push("fa");
+  playNoteSound("fa");
   console.log("playerInput", playerInput);
   console.log("gameGenNotes", gameGenNotes);
   console.log(playerInput);
