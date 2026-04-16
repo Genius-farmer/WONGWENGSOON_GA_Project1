@@ -14,6 +14,8 @@ const miButton = document.querySelector("#mi");
 const faButton = document.querySelector("#fa");
 const startButton = document.querySelector("#start");
 const resetButton = document.querySelector("#reset");
+const gameOverScreen = document.querySelector("#game-over");
+const restartButton = document.querySelector("#restart");
 
 startButton.addEventListener("click", function () {
   console.log("START CLICKED");
@@ -194,6 +196,8 @@ doButton.addEventListener("click", function () {
   console.log("compare", playerInput[currentIndex], gameGenNotes[currentIndex]);
 
   if (playerInput[currentIndex] !== gameGenNotes[currentIndex]) {
+    gameOverScreen.classList.remove("hidden");
+    gameStarted = false;
     console.log("WRONG!!");
     return;
   }
@@ -242,6 +246,7 @@ reButton.addEventListener("click", function () {
   console.log("compare", playerInput[currentIndex], gameGenNotes[currentIndex]);
 
   if (playerInput[currentIndex] !== gameGenNotes[currentIndex]) {
+    gameStarted = false;
     console.log("WRONG!!");
     return;
   }
@@ -285,6 +290,7 @@ miButton.addEventListener("click", function () {
   console.log("compare", playerInput[currentIndex], gameGenNotes[currentIndex]);
 
   if (playerInput[currentIndex] !== gameGenNotes[currentIndex]) {
+    gameStarted = false;
     console.log("WRONG!!");
     return;
   }
@@ -327,6 +333,7 @@ faButton.addEventListener("click", function () {
   console.log("compare", playerInput[currentIndex], gameGenNotes[currentIndex]);
 
   if (playerInput[currentIndex] !== gameGenNotes[currentIndex]) {
+    gameStarted = false;
     console.log("WRONG!!");
     return;
   }
@@ -375,6 +382,12 @@ function resetGame() {
 resetButton.addEventListener("click", function () {
   console.log("RESET GAME RAN");
   resetGame();
+});
+
+restartButton.addEventListener("click", function () {
+  gameOverScreen.classList.add("hidden");
+  resetGame();
+  // startButton.click(); // auto restart
 });
 
 // check do, re, mi, fa → push valid ones
