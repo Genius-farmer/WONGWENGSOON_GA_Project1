@@ -183,174 +183,6 @@ startButton.addEventListener("click", function () {
   startRound();
 });
 
-/*
-startButton.addEventListener("click", function () {
-  console.log("START CLICKED");
-  instructionsButton.classList.add("hidden");
-  resetGame(); // clean the board/data inside
-  playIntroSound();
-  console.log("RESET CLICKED");
-
-  message.textContent = "Ready ! ! ! ! ! ! ! !";
-
-  let currentGamePosition = 4;
-  let visitedGamePosition = [4];
-  gameGenNotes = [];
-
-  for (let i = 0; i < 3; i++) {
-    let validMoves = [];
-    if (
-      currentGamePosition % 3 !== 2 &&
-      !visitedGamePosition.includes(currentGamePosition + 1)
-    ) {
-      validMoves.push("do");
-    }
-    if (
-      currentGamePosition % 3 !== 0 &&
-      !visitedGamePosition.includes(currentGamePosition - 1)
-    ) {
-      validMoves.push("mi");
-    }
-    if (
-      currentGamePosition < 6 &&
-      !visitedGamePosition.includes(currentGamePosition + 3)
-    ) {
-      validMoves.push("re");
-    }
-    if (
-      currentGamePosition > 2 &&
-      !visitedGamePosition.includes(currentGamePosition - 3)
-    ) {
-      validMoves.push("fa");
-    }
-
-    let randomMove = validMoves[Math.floor(Math.random() * validMoves.length)];
-
-    let newPosition;
-
-    if (randomMove === "do") newPosition = currentGamePosition + 1;
-    if (randomMove === "mi") newPosition = currentGamePosition - 1;
-    if (randomMove === "re") newPosition = currentGamePosition + 3;
-    if (randomMove === "fa") newPosition = currentGamePosition - 3;
-
-    currentGamePosition = newPosition;
-    visitedGamePosition.push(newPosition);
-    gameGenNotes.push(randomMove);
-  }
-  console.log(gameGenNotes);
-
-  timers.push(
-    setTimeout(function () {
-      message.textContent = "";
-    }, 2200),
-  );
-
-  timers.push(
-    setTimeout(function () {
-      message.textContent = "Do";
-    }, 2300),
-  );
-
-  timers.push(
-    setTimeout(function () {
-      message.textContent = "Do it";
-    }, 2600),
-  );
-
-  timers.push(
-    setTimeout(function () {
-      message.textContent = "Do it with";
-    }, 2800),
-  );
-
-  timers.push(
-    setTimeout(function () {
-      message.textContent = "Do it with me";
-    }, 3000),
-  );
-
-  timers.push(
-    setTimeout(function () {
-      message.textContent = "Do it with me! ";
-    }, 3100),
-  );
-
-  timers.push(
-    setTimeout(function () {
-      message.textContent = "Do it with me! !";
-    }, 3200),
-  );
-
-  timers.push(
-    setTimeout(function () {
-      message.textContent = "Do it with me! ! !";
-    }, 3300),
-  );
-
-  timers.push(
-    setTimeout(function () {
-      message.textContent = "Do it with me! ! ! !";
-    }, 3400),
-  );
-
-  timers.push(
-    setTimeout(function () {
-      message.textContent = "ONE";
-    }, 3800),
-  );
-  timers.push(
-    setTimeout(function () {
-      message.textContent = "TWO";
-    }, 4200),
-  );
-
-  timers.push(
-    setTimeout(function () {
-      message.textContent = "THREE";
-    }, 4600),
-  );
-
-  timers.push(
-    setTimeout(function () {
-      message.textContent = "GO";
-    }, 5000),
-  );
-
-  timers.push(
-    setTimeout(function () {
-      message.textContent = gameGenNotes[0];
-      playNoteSound(gameGenNotes[0]);
-    }, 5500),
-  );
-
-  timers.push(
-    setTimeout(function () {
-      message.textContent = gameGenNotes[1];
-      playNoteSound(gameGenNotes[1]);
-    }, 6000),
-  );
-
-  timers.push(
-    setTimeout(function () {
-      message.textContent = gameGenNotes[2];
-      playNoteSound(gameGenNotes[2]);
-    }, 6500),
-  );
-
-  timers.push(
-    setTimeout(function () {
-      message.textContent = "";
-      maze.classList.remove("hidden");
-      controls.classList.remove("hidden");
-      instructionsButton.classList.add("hidden");
-      init();
-      gameStarted = true;
-    }, 7000),
-  );
-  
-});
-*/
-
 function init() {
   const startCell = document.querySelector("#cell-" + playerInitPosition);
   startCell.textContent = "✈️";
@@ -412,9 +244,8 @@ doButton.addEventListener("click", function () {
         }, 1500),
       );
     } else {
-      // message.textContent = "YOU WIN";
+      message.textContent = "YOU WIN";
       console.log("ALL ROUNDS CLEARED");
-      startBonusRound();
     }
     return;
   }
@@ -484,9 +315,8 @@ reButton.addEventListener("click", function () {
         }, 1500),
       );
     } else {
-      // message.textContent = "YOU WIN";
+      message.textContent = "YOU WIN";
       console.log("ALL ROUNDS CLEARED");
-      startBonusRound();
     }
     return;
   }
@@ -554,9 +384,7 @@ miButton.addEventListener("click", function () {
         }, 1500),
       );
     } else {
-      // message.textContent = "YOU WIN";
       console.log("ALL ROUNDS CLEARED");
-      startBonusRound();
     }
     return;
   }
@@ -628,9 +456,7 @@ faButton.addEventListener("click", function () {
         }, 1500),
       );
     } else {
-      // message.textContent = "YOU WIN";
       console.log("ALL ROUNDS CLEARED");
-      startBonusRound();
     }
     return;
   }
@@ -696,42 +522,6 @@ function showInstructionsDemo() {
       },
       1200 + demoNotes.length * 1000,
     ),
-  );
-}
-
-function startBonusRound() {
-  gameStarted = false;
-  controls.classList.add("hidden");
-  message.classList.remove("win-glow");
-  message.classList.add("bonus-glow");
-
-  message.textContent = "BONUS ROUND...";
-
-  timers.push(
-    setTimeout(function () {
-      message.textContent = "WATCH CAREFULLY...";
-    }, 1000),
-  );
-
-  timers.push(
-    setTimeout(function () {
-      message.textContent = "do";
-      playNoteSound("do");
-    }, 2000),
-  );
-
-  timers.push(
-    setTimeout(function () {
-      message.textContent = "re";
-      playNoteSound("re");
-    }, 2600),
-  );
-
-  timers.push(
-    setTimeout(function () {
-      message.textContent = "NEVER GONNA GIVE YOU UP";
-      playRickRollSound();
-    }, 3400),
   );
 }
 
