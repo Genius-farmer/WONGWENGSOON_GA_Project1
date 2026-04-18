@@ -1,37 +1,66 @@
-#### Do re mi! - Duet with me!
+## 🎵 Do re mi! - Duet with me! 🎵
 
-This is a simple and interactive game to engage the young and not so young.
+![HOME PAGE](./MD-images/1.png)
 
-User Stories
-As a user, these are the following that i wish to achieve.
+### Description
 
-- I want to see a landing page when i arrive at the website
-  to know that i'm in the right place.
+Do re mi is a browser-based game built using DOM manipulation techniques. Players are required to listen to a sequence of notes and repeat them correctly. The game consists of three rounds, and players must successfully complete each round to progress. The difficulty increases as the game advances. The objective of the game is to help players recognise and develop familiarity with basic musical notes.
 
-- I want to see a 3 by 3 grid with "start", "reset", "instructions", "Do", "Re" ,"mi" button on the the landing page to know my options for gameplay
+### 🕹️ How to Play
 
-- I want to be able to click on "instructions" button to know how to play the games.
+1. Press the **"Start"** button to begin the game.
+   They will hear a background music containing whistle with visual aid of "Ready ! ! ! ! ! ! ! !"
 
--The instructions should contain rules and regulation of the gameplay
+2. After hearing **"One, Two, Three"**, three random musical notes(**Do, Re, Me, Fa**) will be played.
+3. Four options will then appear. Players must select the correct sequence of notes. Each selection will play the corresponding note as audio feedback.
+4. If player selects all three notes correctly, they will proceed to the next round.
+5. If player selects an incorrect notes at any point, the game ends and they will lose.
+6. Players can click on **"Instructions"** for visually guidance.
 
--There is a total of 3 rounds that player gets to play.
+### Game Demo (Walk Through)
 
--I want to be able to click "Do, Re, Mi , Fah" buttons once i clicked on "start".
+- Select **"Start"**
+  ![HOME PAGE](./MD-images/2.png)
 
--The webpage should play a randomised 3 note sound once the user has started. It should be within the octave of "Do, Re, Mi, Fah"
+- After "One, Two, Three" , player will see three notes being played one by one.
+  ![HOME PAGE](./MD-images/3.png)
+  ![HOME PAGE](./MD-images/4.png)
+  ![HOME PAGE](./MD-images/5.png)
 
--There should be visual cues to let players know that they cannot click on the grid yet until the sounds are played finished.
+-Grid will appear and player pick the butons
+![HOME PAGE](./MD-images/6.png)
 
--There should be visual cues to let players know that it is now for them to start clicking the "do" "re" "mi" "fa" buttons according to what they have heard.
+-Pick the wrong sequence of note, player will see "You Lost!"
+![HOME PAGE](./MD-images/7.png)
 
--I want to see visual feedback of what I have click displayed on the screen so that i know my choice has been registered.
+## ✨ Features
 
--I want to be presented with a clear visual feedback to indicate whether I am choosing the right or wrong as I click.
+- Interactive sound-based gameplay
+- Progressive difficulty across 3 rounds
+- Real-time feedback (Win / Lose messages)
+- DOM Manipulation
+- Audio playback for musical notes
 
--I will be disqualified from continuing the game the moment I clicked on the wrong note.
+## 🛠️ Technologies Used
 
--Loser defined as player not selecting the correct notes as played by the webpage. The player will not be able to proceed to the next round nor continue the existing game.
+- HTML
+- CSS
+- JavaScript (DOM Manipulation)
 
--Winner defined as player selecting the correct notes played by the webpage. The player will proceed to the next round.
+## 📚 Key Learning
 
--The game function will repeat for round 2 and round 3. Round 3 is the final round.
+- Gained confidence in implementing functionality using JavaScript
+- Developed a better understanding of DOM manipulation and event handling
+- Learned how to handle user input and provide dynamic feedback
+- Improved ability to structure and organise functions effectively
+- Recognised the importance of building basic visuals and core functionality first before expanding features
+
+## 🚀 Future Improvement
+
+- Add keyboard controls to enhance the gameplay experience
+- Include more soud effects and visual animations
+- Introduce additional rounds with increased difficulty
+- Implement a score tracking system
+- Add a timer to increase the game's intensity and engagement
+
+Last updated: 18 April 2026
